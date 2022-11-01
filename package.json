@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "commit": "cz",
+    "dev": "vue-cli-service serve",
     "prepare": "husky install"
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "element-plus": "^1.0.2-beta.28",
     "vue": "^3.2.8",
     "vue-router": "^4.0.11",
     "vuex": "^4.0.2"
@@ -35,7 +37,8 @@
     "eslint-plugin-vue": "^7.0.0",
     "husky": "^8.0.0",
     "sass": "^1.26.5",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "vue-cli-plugin-element-plus": "~0.0.13"
   },
   "config": {
     "commitizen": {
