@@ -8,3 +8,6 @@ export const loginApi = (data) => {
     data
   })
 }
+
+// 获取用户信息
+// export const get
