@@ -8,12 +8,17 @@ const whiteList = ['/login']
  * 权限判断
  * 路由前置守卫
  */
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   if (store.getters.token) {
     // 用户已登录不许进入 login
     if (to.path === '/login') {
       next('/')
     } else {
+      console.log('艹', store.getters.hasUserInfo)
+      if (!store.getters.hasUserInfo) {
+        await store.dispatch('user/getUserInfo')
+      }
+      console.log('放行')
       next()
     }
   } else {

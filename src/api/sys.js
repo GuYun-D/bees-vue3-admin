@@ -10,4 +10,8 @@ export const loginApi = (data) => {
 }
 
 // 获取用户信息
-// export const get
+export const getUserInfoApi = () => {
+  return request({
+    url: '/sys/profile'
+  })
+}
