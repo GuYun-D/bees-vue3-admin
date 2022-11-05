@@ -23,7 +23,7 @@
     <SidebarItem
       v-for="item in routes"
       :key="item.path"
-      :route="routes"
+      :route="item"
     ></SidebarItem>
   </el-menu>
 </template>
@@ -38,11 +38,8 @@ const router = useRouter()
 
 const routes = computed(() => {
   const filterRoute = filterRoutes(router.getRoutes())
-  // console.log(filterRoute);
-
   return generateMenus(filterRoute)
 })
-
 </script>
 
 <style lang="scss" scoped>

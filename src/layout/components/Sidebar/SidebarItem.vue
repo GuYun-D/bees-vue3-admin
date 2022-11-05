@@ -1,5 +1,8 @@
 <template>
-  <el-submenu v-if="route.children && route.children.length > 0" :index="route.path">
+  <el-submenu
+    v-if="route.children && route.children.length > 0"
+    :index="route.path"
+  >
     <template #title>
       <MenuItem :title="route.meta.title" :icon="route.meta.icon"> </MenuItem>
     </template>
@@ -7,7 +10,7 @@
     <SidebarItem
       v-for="item in route.children"
       :key="item.path"
-      :route="route"
+      :route="item"
     ></SidebarItem>
   </el-submenu>
   <el-menu-item v-else :index="route.path">
@@ -20,13 +23,16 @@ import { defineProps } from 'vue'
 import MenuItem from './MenuItem.vue'
 import SidebarItem from './SidebarItem'
 
-defineProps({
+const props = defineProps({
   route: {
     type: Array,
     required: true
   }
 })
 
+setTimeout(() => {
+  console.log('草泥吗', props.route)
+}, 1000)
 </script>
 
 <style lang="scss" scoped>

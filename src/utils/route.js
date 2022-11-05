@@ -13,22 +13,23 @@ export const isNull = (data) => {
  */
 export const getChildrenRoutes = (routes) => {
   const result = []
-
   routes.forEach((route) => {
     if (route.children && route.children.length > 0) {
       result.push(...route.children)
     }
   })
-
   return result
 }
 
 /**
- * 处理脱离层级的路由
+ * 处理脱离层级的路由，就是获取一级路由
+ * 先获取所有子路由，在 router.getRoutes()中过滤调所有没有子路由的路由表
  * @param {*} routes
  */
 export const filterRoutes = (routes) => {
+  // console.log('开始了，都进来了', routes)
   const childrenRoutes = getChildrenRoutes(routes)
+  // console.log('获取所有子路由', childrenRoutes)
   return routes.filter((route) => {
     return !childrenRoutes.find((childrenRoute) => {
       return childrenRoute.path === route.path
@@ -41,20 +42,18 @@ export const filterRoutes = (routes) => {
  */
 export const generateMenus = (routes, basepath = '') => {
   const result = []
+  // 遍历路由表
   routes.forEach((item) => {
-    // 不存在 children 并且不存在 meta
-    if (!isNull(item.children) && !isNull(item.meta)) return
-    // 存在 children， 不存在meta， 迭代  generateMenus
-    if (!isNull(item.meta) && isNull(item.children)) {
+    // 不存在 children && 不存在 meta 直接 return
+    if (isNull(item.meta) && isNull(item.children)) return
+    // 存在 children 不存在 meta，进入迭代
+    if (isNull(item.meta) && !isNull(item.children)) {
       result.push(...generateMenus(item.children))
+      return
     }
-
-    /**
-     * 不存在 children，但是存在 meta 或者
-     * 存在children并且存在meta
-     */
+    // 合并 path 作为跳转路径
     const routePath = path.resolve(basepath, item.path)
-
+    // 路由分离之后，存在同名父路由的情况，需要单独处理
     let route = result.find((item) => item.path === routePath)
     if (!route) {
       route = {
@@ -62,13 +61,18 @@ export const generateMenus = (routes, basepath = '') => {
         path: routePath,
         children: []
       }
+
+      // icon 与 title 必须全部存在
+      if (route.meta.icon && route.meta.title) {
+        // meta 存在生成 route 对象，放入 arr
+        result.push(route)
+      }
     }
 
-    // title和icon同时存在
-    if (isNull(item.children)) {
+    // 存在 children 进入迭代到children
+    if (item.children) {
       route.children.push(...generateMenus(item.children, route.path))
     }
   })
-
   return result
 }
