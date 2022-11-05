@@ -24,6 +24,16 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { filterRoutes, generateMenus } from '../../../utils/route'
+const router = useRouter()
+
+const routes = computed(() => {
+  console.log(1)
+  const filterRoute = filterRoutes(router.getRoutes())
+  return generateMenus(filterRoute)
+})
 </script>
 
 <style lang="scss" scoped>
