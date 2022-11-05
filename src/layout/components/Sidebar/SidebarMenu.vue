@@ -5,7 +5,7 @@
     background-color="#545c64"
     text-color="#fff"
   >
-    <el-submenu index="1">
+    <!-- <el-submenu index="1">
       <template #title>
         <i class="el-icon-location"></i>
         <span>海贼王</span>
@@ -19,7 +19,12 @@
     <el-menu-item index="2">
       <i class="el-icon-location"></i>
       <template #title> 火影</template>
-    </el-menu-item>
+    </el-menu-item> -->
+    <SidebarItem
+      v-for="item in routes"
+      :key="item.path"
+      :route="routes"
+    ></SidebarItem>
   </el-menu>
 </template>
 
@@ -27,13 +32,18 @@
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { filterRoutes, generateMenus } from '../../../utils/route'
+import SidebarItem from './SidebarItem'
+
 const router = useRouter()
 
 const routes = computed(() => {
-  console.log(1)
   const filterRoute = filterRoutes(router.getRoutes())
+  // console.log(filterRoute);
+
   return generateMenus(filterRoute)
 })
+
+console.log(routes.value)
 </script>
 
 <style lang="scss" scoped>
