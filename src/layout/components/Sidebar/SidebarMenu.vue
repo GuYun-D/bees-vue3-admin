@@ -43,7 +43,6 @@ const routes = computed(() => {
   return generateMenus(filterRoute)
 })
 
-console.log(routes.value)
 </script>
 
 <style lang="scss" scoped>

@@ -14,11 +14,9 @@ router.beforeEach(async (to, from, next) => {
     if (to.path === '/login') {
       next('/')
     } else {
-      console.log('艹', store.getters.hasUserInfo)
       if (!store.getters.hasUserInfo) {
         await store.dispatch('user/getUserInfo')
       }
-      console.log('放行')
       next()
     }
   } else {

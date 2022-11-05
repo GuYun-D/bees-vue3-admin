@@ -20,8 +20,6 @@ import NavBar from './components/NavBar.vue'
 import SideBar from './components/Sidebar'
 import AppMain from './components/AppMain'
 import vars from '../styles/variables.scss'
-
-console.log(vars)
 </script>
 
 <style lang="scss" scoped>
