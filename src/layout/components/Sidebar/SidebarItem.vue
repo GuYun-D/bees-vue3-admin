@@ -25,7 +25,7 @@ import SidebarItem from './SidebarItem'
 
 const props = defineProps({
   route: {
-    type: Array,
+    type: Object,
     required: true
   }
 })

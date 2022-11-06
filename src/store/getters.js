@@ -12,5 +12,10 @@ export default {
     return JSON.stringify(state.user.userInfo) !== '{}'
   },
   userInfo: (state) => state.user.userInfo,
-  cssVar: state => variables
+  cssVar: (state) => variables,
+
+  /**
+   * menu 展开
+   */
+  sidebarOpened: (state) => state.app.sidebarOpened
 }
