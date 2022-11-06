@@ -1,9 +1,11 @@
 <template>
   <el-menu
+    :default-active="activeMenu"
     :unique-opened="true"
-    active-text-color="#ffd04b"
-    background-color="#545c64"
-    text-color="#fff"
+    :active-text-color="$store.getters.cssVar.menuActiveText"
+    :background-color="$store.getters.cssVar.menuBg"
+    :text-color="$store.getters.cssVar.menuText"
+    router
   >
     <!-- <el-submenu index="1">
       <template #title>
@@ -30,7 +32,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { filterRoutes, generateMenus } from '../../../utils/route'
 import SidebarItem from './SidebarItem'
 
@@ -39,6 +41,13 @@ const router = useRouter()
 const routes = computed(() => {
   const filterRoute = filterRoutes(router.getRoutes())
   return generateMenus(filterRoute)
+})
+
+// 默认激活项
+const route = useRoute()
+const activeMenu = computed(() => {
+  const { path } = route
+  return path
 })
 </script>
 
