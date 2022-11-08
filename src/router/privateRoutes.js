@@ -15,37 +15,37 @@ export default [
     children: [
       {
         path: '/user/manage',
-        name: 'user-manage',
+        name: 'userManage',
         component: () => import('../views/user-mange/index.vue'),
         meta: {
-          title: 'user-manage',
+          title: 'userManage',
           icon: 'personnel-manage'
         }
       },
       {
         path: '/user/role',
-        name: 'role-list',
+        name: 'roleList',
         component: () => import('../views/role-list/index.vue'),
         meta: {
-          title: 'role-list',
+          title: 'roleList',
           icon: 'role'
         }
       },
       {
         path: '/user/permission',
-        name: 'permission-list',
+        name: 'permissionList',
         component: () => import('../views/permission-list/index.vue'),
         meta: {
-          title: 'permission-list',
+          title: 'permissionList',
           icon: 'permission'
         }
       },
       {
         path: '/user/info/:id',
-        name: 'user-info',
+        name: 'userLnfo',
         component: () => import('../views/user-info/index.vue'),
         meta: {
-          title: 'user-info'
+          title: 'userLnfo'
         }
       },
       {
@@ -53,7 +53,7 @@ export default [
         name: 'import',
         component: () => import('../views/import/index.vue'),
         meta: {
-          title: 'excel-import'
+          title: 'excelImport'
         }
       }
     ]
@@ -81,9 +81,9 @@ export default [
       {
         path: '/article/:id',
         component: () => import('../views/article-detail/index.vue'),
-        name: 'article-detail',
+        name: 'articleDetail',
         meta: {
-          title: 'article-detail'
+          title: 'articleDetail'
         }
       },
       {
@@ -91,16 +91,16 @@ export default [
         component: () => import('../views/article-create/index.vue'),
         name: 'article-create',
         meta: {
-          title: 'article-create',
+          title: 'articleCreate',
           icon: 'article-create'
         }
       },
       {
         path: '/article/editor/:id',
         component: () => import('../views/article-create/index.vue'),
-        name: 'article-editor',
+        name: 'articleEditor',
         meta: {
-          title: 'article-editor'
+          title: 'articleEditor'
         }
       }
     ]

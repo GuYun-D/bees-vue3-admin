@@ -7,7 +7,8 @@
       :rules="loginRules"
     >
       <div class="login-title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title">{{ $t('msg.login.title') }}</h3>
+        <LangSelect></LangSelect>
       </div>
 
       <el-form-item prop="username">
@@ -46,8 +47,10 @@
         type="primary"
         style="width: 100%; margin-bottom: 30px"
       >
-        登录
+        {{ $t('msg.login.loginBtn') }}
       </el-button>
+
+      <div class="tips" v-html="$t('msg.login.desc')"></div>
     </el-form>
   </div>
 </template>
@@ -55,8 +58,12 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
+import { useI18n } from 'vue-i18n'
 import SvgIcon from '../../components/SVgIcon'
 import { validatePassword } from './rules'
+import LangSelect from '../../components/LangSelect'
+
+const i18n = useI18n()
 
 const loginForm = ref({
   username: 'super-admin',
@@ -68,7 +75,7 @@ const loginRules = ref({
     {
       required: true,
       trigger: 'blur',
-      message: '用户名为必填项'
+      message: i18n.t('msg.login.usernameRule')
     }
   ],
 
@@ -154,6 +161,13 @@ $cursor: #fff;
         caret-color: $cursor;
       }
     }
+
+    .tips {
+      font-size: 24upx;
+      color: #fff;
+      margin-top: 20px;
+      line-height: 1.5;
+    }
   }
 
   .svg-container {
@@ -183,6 +197,17 @@ $cursor: #fff;
     color: $dark_gray;
     cursor: pointer;
     user-select: none;
+  }
+
+  ::v-deep .international {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    background-color: #fff;
+    font-size: 22px;
+    padding: 4px;
+    border-radius: 4px;
+    cursor: pointer;
   }
 }
 </style>

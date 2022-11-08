@@ -5,11 +5,12 @@
   <SvgIcon v-else :icon="icon"></SvgIcon>
   <i></i>
 
-  <span>{{ title }}</span>
+  <span>{{ generateTitle(title) }}</span>
 </template>
 <script setup>
 import { defineProps } from 'vue'
 import SvgIcon from '@/components/SVgIcon'
+import { generateTitle } from '../../../utils/i18n'
 
 defineProps({
   title: {

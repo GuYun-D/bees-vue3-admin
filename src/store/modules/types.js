@@ -9,3 +9,4 @@ export const SET_USER_INFO = 'setUserInfo'
  * module app
  */
 export const TRIGGER_SIDEBAR_OPENED = 'triggerSidebarOpened'
+export const SET_LANGUAGE = 'setLanguage'

@@ -7,6 +7,10 @@
 
     <!-- 右侧导航栏 -->
     <div class="right-menu">
+      <!-- language -->
+      <LangSelect class="right-menu-item hover-effect"></LangSelect>
+
+      <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <el-avatar
@@ -19,12 +23,16 @@
         <template #dropdown>
           <el-dropdown-menu class="user-dropdown">
             <router-link to="/">
-              <el-dropdown-item>主页</el-dropdown-item></router-link
+              <el-dropdown-item>{{
+                $t('msg.navBar.home')
+              }}</el-dropdown-item></router-link
             >
             <a href="">
-              <el-dropdown-item>文档 </el-dropdown-item>
+              <el-dropdown-item>{{ $t('msg.navBar.doc') }} </el-dropdown-item>
             </a>
-            <el-dropdown-item @click="handleLogout">退出登录 </el-dropdown-item>
+            <el-dropdown-item @click="handleLogout"
+              >{{ $t('msg.navBar.logout') }}
+            </el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -36,6 +44,8 @@
 import { useStore } from 'vuex'
 import Hamburger from '../../components/Hamburger'
 import Breadcrumb from '../../components/Breadcrumb'
+import LangSelect from '../../components/LangSelect'
+
 const store = useStore()
 const handleLogout = () => {
   store.dispatch('user/logout')
@@ -82,6 +92,18 @@ const handleLogout = () => {
           --el-avatar-background-color: none;
           margin-right: 12px;
         }
+      }
+    }
+
+    ::v-deep .right-menu-item {
+      display: inline-block;
+      padding: 0 18px 0 0;
+      font-size: 24px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+
+      &.hover-effect {
+        cursor: pointer;
       }
     }
   }
