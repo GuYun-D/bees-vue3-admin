@@ -11,6 +11,9 @@ import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { ElConfigProvider } from 'element-plus'
 
+import { getOriginalStyle } from './utils/theme'
+getOriginalStyle()
+
 const store = useStore()
 
 const elementLang = computed(() => {

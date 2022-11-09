@@ -10,3 +10,4 @@ export const SET_USER_INFO = 'setUserInfo'
  */
 export const TRIGGER_SIDEBAR_OPENED = 'triggerSidebarOpened'
 export const SET_LANGUAGE = 'setLanguage'
+export const SET_MAIN_COLOR = 'setMainColor'

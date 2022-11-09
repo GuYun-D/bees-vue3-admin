@@ -23,16 +23,12 @@ import { defineProps } from 'vue'
 import MenuItem from './MenuItem.vue'
 import SidebarItem from './SidebarItem'
 
-const props = defineProps({
+defineProps({
   route: {
     type: Object,
     required: true
   }
 })
-
-setTimeout(() => {
-  console.log('草泥吗', props.route)
-}, 1000)
 </script>
 
 <style lang="scss" scoped>
