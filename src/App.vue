@@ -11,10 +11,11 @@ import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { ElConfigProvider } from 'element-plus'
 
-import { getOriginalStyle } from './utils/theme'
-getOriginalStyle()
-
+import { generateNewStyle, writeNewStyle } from './utils/theme'
 const store = useStore()
+generateNewStyle(store.getters.mainColor).then((newStyle) => {
+  writeNewStyle(newStyle)
+})
 
 const elementLang = computed(() => {
   return store.getters.language === 'en' ? en : zhCn
