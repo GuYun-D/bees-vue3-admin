@@ -11,6 +11,8 @@
       <ThemeSelect class="right-menu-item hover-effect"></ThemeSelect>
       <!-- language -->
       <LangSelect class="right-menu-item hover-effect"></LangSelect>
+      <!-- full screen -->
+      <Screenfull class="right-menu-item hover-effect"></Screenfull>
 
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
@@ -48,6 +50,7 @@ import Hamburger from '../../components/Hamburger'
 import Breadcrumb from '../../components/Breadcrumb'
 import LangSelect from '../../components/LangSelect'
 import ThemeSelect from '../../components/ThemeSelect'
+import Screenfull from '../../components/Screenfull'
 
 const store = useStore()
 const handleLogout = () => {
