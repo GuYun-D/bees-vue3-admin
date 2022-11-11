@@ -1,6 +1,7 @@
 <template>
   <!-- 外部图标 -->
   <div
+    @click.stop="$emit('click')"
     v-if="isExternal"
     :style="externalIconStyle"
     class="svg-icon svg-external-icon"
@@ -9,7 +10,13 @@
 
   <!-- 内部图标 -->
 
-  <svg v-else :class="className" class="svg-icon" aria-hidden="true">
+  <svg
+    @click.stop="$emit('click')"
+    v-else
+    :class="className"
+    class="svg-icon"
+    aria-hidden="true"
+  >
     <use :xlink:href="iconName" />
   </svg>
 </template>

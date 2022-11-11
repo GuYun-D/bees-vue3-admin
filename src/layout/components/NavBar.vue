@@ -7,6 +7,8 @@
 
     <!-- 右侧导航栏 -->
     <div class="right-menu">
+      <!-- search -->
+      <HeaderSearch class="right-menu-item hover-effect"></HeaderSearch>
       <!-- theme -->
       <ThemeSelect class="right-menu-item hover-effect"></ThemeSelect>
       <!-- language -->
@@ -51,6 +53,7 @@ import Breadcrumb from '../../components/Breadcrumb'
 import LangSelect from '../../components/LangSelect'
 import ThemeSelect from '../../components/ThemeSelect'
 import Screenfull from '../../components/Screenfull'
+import HeaderSearch from '../../components/HeaderSearch'
 
 const store = useStore()
 const handleLogout = () => {
