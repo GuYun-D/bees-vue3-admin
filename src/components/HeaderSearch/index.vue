@@ -4,13 +4,9 @@
     :class="{
       show: isShow,
     }"
+    @click.stop="handleShowClick"
   >
-    <SvgIcon
-      class-name="search-icon"
-      icon="search"
-      @click="handleShowClick"
-    ></SvgIcon>
-    {{ searchPool }}
+    <SvgIcon class-name="search-icon" icon="search"></SvgIcon>
 
     <el-select
       ref="headerSearchSelectRef"
@@ -37,6 +33,7 @@ import { computed, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import SvgIcon from '../SVgIcon'
 import { filterRoutes } from '../../utils/route'
+import { watchSwitchLanguage } from '../../utils/i18n'
 import Fuse from 'fuse.js'
 import { generateRoutes } from './fuseData'
 
@@ -46,26 +43,30 @@ const isShow = ref(false)
 const router = useRouter()
 
 // 搜索数据源
-const searchPool = computed(() => {
+let searchPool = computed(() => {
   const filterRouters = filterRoutes(router.getRoutes())
   return generateRoutes(filterRouters)
 })
 
 // 搜索实现
-const fuse = new Fuse(searchPool.value, {
-  shouldSort: true, // 按照优先级进行搜索
-  minMatchCharLength: 1, // 匹配超过几个字符算搜索到了
-  keys: [
-    {
-      name: 'title', // 搜索的键
-      weight: 0.7 // 权重
-    },
-    {
-      name: 'path',
-      weight: 0.3
-    }
-  ]
-})
+let fuse = null
+const initFuse = (searchPool) => {
+  fuse = new Fuse(searchPool, {
+    shouldSort: true, // 按照优先级进行搜索
+    minMatchCharLength: 1, // 匹配超过几个字符算搜索到了
+    keys: [
+      {
+        name: 'title', // 搜索的键
+        weight: 0.7 // 权重
+      },
+      {
+        name: 'path',
+        weight: 0.3
+      }
+    ]
+  })
+}
+initFuse(searchPool.value)
 
 const handleShowClick = () => {
   isShow.value = !isShow.value
@@ -105,6 +106,16 @@ watch(
     }
   }
 )
+
+// 监听语言的切换
+watchSwitchLanguage(() => {
+  searchPool = computed(() => {
+    const filterRouters = filterRoutes(router.getRoutes())
+    return generateRoutes(filterRouters)
+  })
+
+  initFuse(searchPool.value)
+})
 </script>
 
 <style lang="scss" scoped>
