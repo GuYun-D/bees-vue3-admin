@@ -1,13 +1,18 @@
-import { TRIGGER_SIDEBAR_OPENED, SET_LANGUAGE } from './types'
+import {
+  TRIGGER_SIDEBAR_OPENED,
+  SET_LANGUAGE,
+  ADD_TAGS_VIEW_LIST
+} from './types'
 import { getItem, setItem } from '../../utils/storage'
-import { LANG } from '../../constant'
+import { LANG, TAGS_VIEW } from '../../constant'
 
 export default {
   namespaced: true,
   state () {
     return {
       sidebarOpened: true,
-      language: getItem(LANG) || 'zh'
+      language: getItem(LANG) || 'zh',
+      tagsViewList: getItem(TAGS_VIEW) || []
     }
   },
 
@@ -19,6 +24,16 @@ export default {
     [SET_LANGUAGE] (state, lang) {
       setItem(LANG, lang)
       state.language = lang
+    },
+    [ADD_TAGS_VIEW_LIST] (state, tag) {
+      const isFind = state.tagsViewList.find((item) => {
+        return item.path === tag.path
+      })
+
+      if (!isFind) {
+        state.tagsViewList.push(tag)
+        setItem(TAGS_VIEW, state.tagsViewList)
+      }
     }
   }
 }

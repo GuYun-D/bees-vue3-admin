@@ -14,6 +14,8 @@
       <!-- 顶部导航 -->
       <div class="fixed-header">
         <NavBar></NavBar>
+        <!-- tagsview -->
+        <TagsView></TagsView>
       </div>
       <!-- 主要内容区 -->
       <AppMain></AppMain>
@@ -25,6 +27,7 @@
 import NavBar from './components/NavBar.vue'
 import SideBar from './components/Sidebar'
 import AppMain from './components/AppMain'
+import TagsView from '../components/TagsView'
 </script>
 
 <style lang="scss" scoped>
