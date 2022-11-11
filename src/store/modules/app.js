@@ -1,7 +1,8 @@
 import {
   TRIGGER_SIDEBAR_OPENED,
   SET_LANGUAGE,
-  ADD_TAGS_VIEW_LIST
+  ADD_TAGS_VIEW_LIST,
+  CHANGE_TAGS_VIEW
 } from './types'
 import { getItem, setItem } from '../../utils/storage'
 import { LANG, TAGS_VIEW } from '../../constant'
@@ -34,6 +35,11 @@ export default {
         state.tagsViewList.push(tag)
         setItem(TAGS_VIEW, state.tagsViewList)
       }
+    },
+    // tagsView 国际化
+    [CHANGE_TAGS_VIEW] (state, { index, tag }) {
+      state.tagsViewList[index] = tag
+      setItem(TAGS_VIEW, state.tagsViewList)
     }
   }
 }
