@@ -4,6 +4,7 @@
     :class="{
       show: isShow,
     }"
+    id="guide-search"
     @click.stop="handleShowClick"
   >
     <SvgIcon class-name="search-icon" icon="search"></SvgIcon>

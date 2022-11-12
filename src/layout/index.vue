@@ -15,7 +15,7 @@
       <div class="fixed-header">
         <NavBar></NavBar>
         <!-- tagsview -->
-        <TagsView></TagsView>
+        <TagsView id="guide-tags"></TagsView>
       </div>
       <!-- 主要内容区 -->
       <AppMain></AppMain>

@@ -3,10 +3,12 @@
     <!-- menu collapse -->
     <Hamburger class="hamburger-container"></Hamburger>
 
-    <Breadcrumb class="breadcrumb-container"></Breadcrumb>
+    <Breadcrumb id="guide-breadcrumb" class="breadcrumb-container"></Breadcrumb>
 
     <!-- 右侧导航栏 -->
     <div class="right-menu">
+      <!-- guide -->
+      <Guide class="right-menu-item hover-effect"></Guide>
       <!-- search -->
       <HeaderSearch class="right-menu-item hover-effect"></HeaderSearch>
       <!-- theme -->
@@ -54,6 +56,7 @@ import LangSelect from '../../components/LangSelect'
 import ThemeSelect from '../../components/ThemeSelect'
 import Screenfull from '../../components/Screenfull'
 import HeaderSearch from '../../components/HeaderSearch'
+import Guide from '../../components/Guide'
 
 const store = useStore()
 const handleLogout = () => {

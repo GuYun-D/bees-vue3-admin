@@ -1,5 +1,5 @@
 <template>
-  <div class="hamburger-container" @click="handleTriggeMenu">
+  <div id="guide-hamburger" class="hamburger-container" @click="handleTriggeMenu">
     <SvgIcon class="hamburger" :icon="icon"></SvgIcon>
   </div>
 </template>

@@ -5,7 +5,7 @@
       <h1 class="logo-title" v-if="$store.getters.sidebarOpened">团蜂科技</h1>
     </div>
     <el-scrollbar>
-      <SidebarMenu></SidebarMenu>
+      <SidebarMenu id="guide-sidebar"></SidebarMenu>
     </el-scrollbar>
   </div>
 </template>
