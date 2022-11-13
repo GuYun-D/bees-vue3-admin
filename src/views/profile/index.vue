@@ -8,10 +8,10 @@
         <el-card>
           <el-tabs v-model="activeName">
             <el-tab-pane name="feature" :label="$t('msg.profile.feature')">
-              <Feature></Feature>
+              <Feature :features="featureData"></Feature>
             </el-tab-pane>
 
-            <el-tab-pane name="chapter" :label="$t('msg.profile.chapter')">
+            <el-tab-pane name="chapter" :label="$t('msg.profile.use')">
               <Chapter></Chapter>
             </el-tab-pane>
 
