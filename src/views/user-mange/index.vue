@@ -51,10 +51,11 @@
         </el-table-column>
 
         <!-- time -->
-        <el-table-column
-          prop="openTime"
-          :label="$t('msg.excel.openTime')"
-        ></el-table-column>
+        <el-table-column prop="openTime" :label="$t('msg.excel.openTime')">
+          <template v-slot="{ row }">
+            {{ $filters.dateFilter(row.openTime) }}
+          </template>
+        </el-table-column>
 
         <!-- op -->
         <el-table-column
