@@ -7,3 +7,12 @@ export const getUserMangageListApi = (data) => {
     data
   })
 }
+
+// 批量上传
+export const userBatchImportApi = (data) => {
+  return request({
+    url: '/user-manage/batch/import',
+    method: 'POST',
+    data
+  })
+}
