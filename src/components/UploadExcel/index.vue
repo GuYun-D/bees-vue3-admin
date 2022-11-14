@@ -29,7 +29,8 @@
 <script setup>
 import { ref, defineProps } from 'vue'
 import XLSX from 'xlsx'
-import { getHeaderRow } from './utile'
+import { ElMessage } from 'element-plus'
+import { getHeaderRow, isExcel } from './utile'
 
 const props = defineProps({
   beforeUpload: Function,
@@ -105,8 +106,28 @@ const generateData = (excelData) => {
   props.uploadSuccess && props.uploadSuccess(excelData)
 }
 
-const handleDrop = () => {}
-const handleDragover = () => {}
+// 拖进来放手了
+const handleDrop = (e) => {
+  // 上传中
+  if (loading.value) return
+  const files = e.dataTransfer.files
+  if (files.length !== 1) {
+    ElMessage.error('请上传文件')
+    return
+  }
+
+  const rawFile = files[0]
+  if(!isExcel(rawFile)){
+    ElMessage.error('文件必须是excel文件(.xlsx, .xls, .csv)')
+    return
+  }
+
+  upload(rawFile)
+}
+// 拖进来还没放手
+const handleDragover = (e) => {
+  e.dataTransfer.dropEffect = 'copy'
+}
 const handleDragenter = () => {}
 </script>
 
