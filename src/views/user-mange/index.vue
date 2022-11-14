@@ -95,7 +95,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onActivated, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { getUserMangageListApi } from '../../api/user-manage'
 import { watchSwitchLanguage } from '../../utils/i18n'
@@ -137,6 +137,11 @@ const router = useRouter()
 const handleImportExcel = () => {
   router.push('/user/import')
 }
+
+
+onActivated(() => {
+  getData()
+})
 </script>
 
 <style lang="scss" scoped>
