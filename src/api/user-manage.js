@@ -2,9 +2,10 @@ import request from '@/utils/request'
 
 // 获取用户列表
 export const getUserMangageListApi = (data) => {
+  console.log("怎么会是为", data);
   return request({
     url: '/user-manage/list',
-    data
+    params: data
   })
 }
 

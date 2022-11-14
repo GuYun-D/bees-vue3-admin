@@ -88,7 +88,7 @@
         :page-size="size"
         :total="total"
         :page-sizes="[2, 5, 10, 20]"
-        layout="total, sizes, prev, next, jumper"
+        layout="total, sizes, prev, pager, next, jumper"
       ></el-pagination>
     </el-card>
   </div>
@@ -103,13 +103,15 @@ import { watchSwitchLanguage } from '../../utils/i18n'
 const tableData = ref([])
 const total = ref(0)
 const page = ref(1)
-const size = ref(2)
+const size = ref(10)
 
 const getData = async () => {
   const result = await getUserMangageListApi({
     page: page.value,
     size: size.value
   })
+
+  console.log("草泥吗", result);
 
   tableData.value = result.list
   total.value = result.total
@@ -119,10 +121,16 @@ getData()
 watchSwitchLanguage(getData)
 
 // 每页显示多少条数据发生改变时
-const handleSizeChange = () => {}
+const handleSizeChange = (currentSize) => {
+  size.value = currentSize
+  getData()
+}
 
 // 当前页发生变化时
-const handleCurrentChange = () => {}
+const handleCurrentChange = (currentPage) => {
+  page.value = currentPage
+  getData()
+}
 
 // 点击导入excel
 const router = useRouter()

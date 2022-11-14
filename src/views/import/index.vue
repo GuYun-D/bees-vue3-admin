@@ -14,7 +14,7 @@ const i18n = useI18n()
 // excel 上传成功
 const handleUploadExcelSuccess = async ({ body }) => {
   const uploadData = generateData(body)
-  await userBatchImportApi()
+  await userBatchImportApi(uploadData)
   ElMessage.success(body.length + i18n.t('msg.excel.importSuccess'))
 }
 
