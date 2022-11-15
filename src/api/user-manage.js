@@ -23,3 +23,10 @@ export const deleteUserApi = (id) => {
     url: `/user-manage/detele/${id}`
   })
 }
+
+// 获取所有用户列表数据
+export const getUserMangeAllListApi = () => {
+  return request({
+    url: '/user-manage/all-list'
+  })
+}

@@ -5,7 +5,9 @@
         <el-button @click="handleImportExcel" type="primary">{{
           $t('msg.excel.importExcel')
         }}</el-button>
-        <el-button type="success">{{ $t('msg.excel.exportExcel') }}</el-button>
+        <el-button @click="handleExportExcel" type="success">{{
+          $t('msg.excel.exportExcel')
+        }}</el-button>
       </div>
     </el-card>
 
@@ -91,6 +93,9 @@
         layout="total, sizes, prev, pager, next, jumper"
       ></el-pagination>
     </el-card>
+
+    <!-- excel import -->
+    <Export2Excel v-model="exportToExcelVisible"></Export2Excel>
   </div>
 </template>
 
@@ -101,6 +106,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { getUserMangageListApi, deleteUserApi } from '../../api/user-manage'
 import { watchSwitchLanguage } from '../../utils/i18n'
 import { useI18n } from 'vue-i18n'
+import Export2Excel from './components/Export2Excel.vue'
 
 const tableData = ref([])
 const total = ref(0)
@@ -158,6 +164,14 @@ const handleDeleteUser = (row) => {
 onActivated(() => {
   getData()
 })
+
+/**
+ * excel import
+ */
+const exportToExcelVisible = ref(false)
+const handleExportExcel = () => {
+  exportToExcelVisible.value = true
+}
 </script>
 
 <style lang="scss" scoped>

@@ -6,7 +6,7 @@ import dayjs from 'dayjs'
  * @param {String} format
  * @returns
  */
-const dateFilter = (time, format = 'YYYY-MM-DD') => {
+export const dateFilter = (time, format = 'YYYY-MM-DD') => {
   if (!isNaN(time)) {
     time = parseInt(time)
   }
