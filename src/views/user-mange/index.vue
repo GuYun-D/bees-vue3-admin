@@ -68,7 +68,11 @@
           width="220"
         >
           <template #default="{ row }">
-            <el-button type="primary" size="mini">
+            <el-button
+              type="primary"
+              @click="handleShowUserInfo(row._id)"
+              size="mini"
+            >
               {{ $t('msg.excel.show') }}
             </el-button>
 
@@ -145,6 +149,12 @@ const handleImportExcel = () => {
 }
 
 const i18n = useI18n()
+
+// 查看用户信息
+const handleShowUserInfo = (id) => {
+  router.push(`/user/info/${id}`)
+}
+
 // 删除用户
 const handleDeleteUser = (row) => {
   ElMessageBox.confirm(

@@ -30,3 +30,10 @@ export const getUserMangeAllListApi = () => {
     url: '/user-manage/all-list'
   })
 }
+
+// 获取用户详情
+export const getUserDetailApi = (id) => {
+  return request({
+    url: `/user-manage/detail/${id}`
+  })
+}

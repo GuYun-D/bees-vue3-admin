@@ -42,10 +42,11 @@ export default [
       },
       {
         path: '/user/info/:id',
-        name: 'userLnfo',
+        name: 'userInfo',
+        props: true,
         component: () => import('../views/user-info/index.vue'),
         meta: {
-          title: 'userLnfo'
+          title: 'userInfo'
         }
       },
       {
