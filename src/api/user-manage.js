@@ -2,7 +2,6 @@ import request from '@/utils/request'
 
 // 获取用户列表
 export const getUserMangageListApi = (data) => {
-  console.log("怎么会是为", data);
   return request({
     url: '/user-manage/list',
     params: data
@@ -15,5 +14,12 @@ export const userBatchImportApi = (data) => {
     url: '/user-manage/batch/import',
     method: 'POST',
     data
+  })
+}
+
+// 删除用户
+export const deleteUserApi = (id) => {
+  return request({
+    url: `/user-manage/detele/${id}`
   })
 }

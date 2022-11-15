@@ -65,7 +65,7 @@
           fixed="right"
           width="220"
         >
-          <template #default>
+          <template #default="{ row }">
             <el-button type="primary" size="mini">
               {{ $t('msg.excel.show') }}
             </el-button>
@@ -74,7 +74,7 @@
               {{ $t('msg.excel.role') }}
             </el-button>
 
-            <el-button type="danger" size="mini">
+            <el-button type="danger" @click="handleDeleteUser(row)" size="mini">
               {{ $t('msg.excel.remove') }}
             </el-button>
           </template>
@@ -97,8 +97,10 @@
 <script setup>
 import { onActivated, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { getUserMangageListApi } from '../../api/user-manage'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { getUserMangageListApi, deleteUserApi } from '../../api/user-manage'
 import { watchSwitchLanguage } from '../../utils/i18n'
+import { useI18n } from 'vue-i18n'
 
 const tableData = ref([])
 const total = ref(0)
@@ -110,8 +112,6 @@ const getData = async () => {
     page: page.value,
     size: size.value
   })
-
-  console.log("草泥吗", result);
 
   tableData.value = result.list
   total.value = result.total
@@ -138,6 +138,22 @@ const handleImportExcel = () => {
   router.push('/user/import')
 }
 
+const i18n = useI18n()
+// 删除用户
+const handleDeleteUser = (row) => {
+  ElMessageBox.confirm(
+    i18n.t('msg.excel.dialogTitle1') +
+      row.username +
+      i18n.t('msg.excel.dialogTitle2'),
+    {
+      type: 'warning'
+    }
+  ).then(async () => {
+    await deleteUserApi(row._id)
+    ElMessage.success(i18n.t('msg.excel.removeSuccess'))
+    getData()
+  })
+}
 
 onActivated(() => {
   getData()
