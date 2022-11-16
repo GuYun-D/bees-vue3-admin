@@ -117,7 +117,7 @@ const handleDrop = (e) => {
   }
 
   const rawFile = files[0]
-  if(!isExcel(rawFile)){
+  if (!isExcel(rawFile)) {
     ElMessage.error('文件必须是excel文件(.xlsx, .xls, .csv)')
     return
   }
