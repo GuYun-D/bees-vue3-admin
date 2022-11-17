@@ -15,7 +15,16 @@ router.beforeEach(async (to, from, next) => {
       next('/')
     } else {
       if (!store.getters.hasUserInfo) {
-        await store.dispatch('user/getUserInfo')
+        const { permission } = await store.dispatch('user/getUserInfo')
+        console.log('用户权限', permission)
+        const filterRoutes = await store.dispatch('permission/filterRoutes', permission.menus)
+        console.log(filterRoutes)
+        filterRoutes.forEach(item => {
+          router.addRoute(item)
+        })
+
+        // 添加完动态路由之后需要执行一次主动的跳转方可生效
+        return next(to.path)
       }
       next()
     }
