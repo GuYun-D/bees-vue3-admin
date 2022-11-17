@@ -17,13 +17,22 @@
           prop="describe"
         ></el-table-column>
 
-        <el-table-column :label="$t('msg.role.action')" width="200">
-          <el-button type="primary" size="mini">{{
-            $t('msg.role.assignPermissions')
-          }}</el-button>
+        <el-table-column
+          :label="$t('msg.role.action')"
+          #default="{ row }"
+          width="200"
+        >
+          <el-button
+            @click="handleOpenPermissionDialog(row)"
+            type="primary"
+            size="mini"
+            >{{ $t('msg.role.assignPermissions') }}</el-button
+          >
         </el-table-column>
       </el-table>
     </el-card>
+
+    <DistributePermission v-model="visible"></DistributePermission>
   </div>
 </template>
 
@@ -31,6 +40,7 @@
 import { ref } from 'vue'
 import { getRolesListApi } from '../../api/role'
 import { watchSwitchLanguage } from '../../utils/i18n'
+import DistributePermission from './components/DistributePermission.vue'
 
 const allRoleList = ref([])
 const getRoleList = async () => {
@@ -39,6 +49,11 @@ const getRoleList = async () => {
 
 getRoleList()
 watchSwitchLanguage(getRoleList)
+
+const visible = ref(false)
+const handleOpenPermissionDialog = () => {
+  visible.value = true
+}
 </script>
 
 <style lang="scss" scoped></style>

@@ -6,3 +6,10 @@ export const getRolesListApi = () => {
     url: '/role/list'
   })
 }
+
+// 获取当前角色的权限
+export const getUserPermissionApi = (roleId) => {
+  return request({
+    url: `/role/permission/${roleId}`
+  })
+}

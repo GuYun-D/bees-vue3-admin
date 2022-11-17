@@ -39,6 +39,7 @@ import Fuse from 'fuse.js'
 import { generateRoutes } from './fuseData'
 
 const search = ref('')
+
 const isShow = ref(false)
 
 const router = useRouter()

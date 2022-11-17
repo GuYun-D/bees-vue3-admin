@@ -9,6 +9,7 @@ const steps = (i18n) => {
         position: 'bottom-right'
       }
     },
+
     {
       element: '#guide-hamburger',
       popover: {
@@ -16,6 +17,7 @@ const steps = (i18n) => {
         description: i18n.t('msg.guide.hamburgerDesc')
       }
     },
+
     {
       element: '#guide-breadcrumb',
       popover: {

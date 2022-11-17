@@ -21,6 +21,7 @@ let driver = null
 onMounted(() => {
   driver = new Driver({
     opacity: 0.1,
+
     animate: false,
     allowClose: false,
     closeBtnText: i18n.t('msg.guide.close'),
@@ -35,5 +36,4 @@ const handleStartGuide = () => {
   driver.start()
 }
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

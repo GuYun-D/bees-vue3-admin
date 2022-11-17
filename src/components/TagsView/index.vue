@@ -13,7 +13,6 @@
       :to="{ path: tag.fullPath }"
     >
       {{ tag.title }}
-
       <div class="close-wrapper" @click.prevent.stop="handleClosePage(index)">
         <svg-icon v-show="!isActive(tag)" icon="close"></svg-icon>
       </div>
