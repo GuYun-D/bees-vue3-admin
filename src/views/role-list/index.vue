@@ -26,13 +26,16 @@
             @click="handleOpenPermissionDialog(row)"
             type="primary"
             size="mini"
-            >{{ $t('msg.role.assignPermissions') }}</el-button
+            >{{ $t("msg.role.assignPermissions") }}</el-button
           >
         </el-table-column>
       </el-table>
     </el-card>
 
-    <DistributePermission v-model="visible"></DistributePermission>
+    <DistributePermission
+      :roleId="selectRoleId"
+      v-model="visible"
+    ></DistributePermission>
   </div>
 </template>
 
@@ -51,8 +54,10 @@ getRoleList()
 watchSwitchLanguage(getRoleList)
 
 const visible = ref(false)
-const handleOpenPermissionDialog = () => {
+const selectRoleId = ref('')
+const handleOpenPermissionDialog = (row) => {
   visible.value = true
+  selectRoleId.value = row.id
 }
 </script>
 

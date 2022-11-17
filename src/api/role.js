@@ -13,3 +13,12 @@ export const getUserPermissionApi = (roleId) => {
     url: `/role/permission/${roleId}`
   })
 }
+
+// 给角色分配权限
+export const updateRolePermissionApi = data => {
+  return request({
+    url: '/role/distribute-permission',
+    method: 'POST',
+    data
+  })
+}
