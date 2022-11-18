@@ -85,16 +85,21 @@
 </template>
 
 <script setup>
-import { onActivated, ref } from 'vue'
+import { onActivated, ref, onMounted } from 'vue'
 import { getAllArticleListApi } from '../../api/article'
 import { watchSwitchLanguage } from '../../utils/i18n'
 import { dynamicData, selectedDynamicLabel, tableColumns } from './dynamic'
+import { tableRef, initSortable } from './sortable'
 
 // data
 const tableData = ref([])
 const page = ref(1)
 const size = ref(10)
 const total = ref(0)
+
+onMounted(() => {
+  initSortable()
+})
 
 const getData = async () => {
   const result = await getAllArticleListApi({
@@ -141,5 +146,11 @@ const handleCurrentChange = (currentPage) => {
     align-items: center;
     justify-content: flex-start;
   }
+}
+
+::v-deep .sortable-ghost {
+  opacity: 0.6;
+  color: #fff;
+  background-color: #67c23a;
 }
 </style>
