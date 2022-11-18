@@ -1,13 +1,41 @@
 <template>
   <div class="article-ranking-container">
+    <el-card class="header">
+      <span class="sub-titel">{{ $t("msg.article.dynamicTitle") }}</span>
+      <el-checkbox-group v-model="selectedDynamicLabel">
+        <el-checkbox
+          v-for="(item, index) in dynamicData"
+          :label="item.label"
+          :key="index"
+          >{{ item.label }}</el-checkbox
+        >
+      </el-checkbox-group>
+    </el-card>
+
     <el-card>
       <el-table :data="tableData" ref="tableRef" border>
         <el-table-column
-          :label="$t('msg.article.ranking')"
-          prop="ranking"
-        ></el-table-column>
+          v-for="(item, index) in tableColumns"
+          :label="item.label"
+          :prop="item.prop"
+          :key="index"
+        >
+          <template v-if="item.prop === 'publicDate'" #default="{ row }">
+            {{ $filters.relativeTime(row.publicDate) }}
+          </template>
 
-        <el-table-column
+          <template v-else-if="item.prop === 'action'" #default="{ row }">
+            <el-button type="primary" size="mini" @click="handleShow(row)">{{
+              $t("msg.article.show")
+            }}</el-button>
+
+            <el-button type="danger" size="mini" @click="handleDeleta(row)">{{
+              $t("msg.article.remove")
+            }}</el-button>
+          </template>
+        </el-table-column>
+
+        <!-- <el-table-column
           :label="$t('msg.article.title')"
           prop="title"
         ></el-table-column>
@@ -38,7 +66,7 @@
               $t("msg.article.remove")
             }}</el-button>
           </template>
-        </el-table-column>
+        </el-table-column> -->
       </el-table>
 
       <el-pagination
@@ -60,6 +88,7 @@
 import { onActivated, ref } from 'vue'
 import { getAllArticleListApi } from '../../api/article'
 import { watchSwitchLanguage } from '../../utils/i18n'
+import { dynamicData, selectedDynamicLabel, tableColumns } from './dynamic'
 
 // data
 const tableData = ref([])
@@ -100,5 +129,17 @@ const handleCurrentChange = (currentPage) => {
 .pagination {
   margin-top: 20px;
   text-align: right;
+}
+
+.header {
+  .sub-titel {
+    margin-right: 30px;
+  }
+
+  ::v-deep .el-card__body {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
 }
 </style>
