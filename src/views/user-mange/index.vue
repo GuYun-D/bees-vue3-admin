@@ -2,11 +2,14 @@
   <div class="user-manage-container">
     <el-card class="header">
       <div>
-        <el-button @click="handleImportExcel" type="primary">{{
-          $t('msg.excel.importExcel')
-        }}</el-button>
+        <el-button
+          v-permission="['importUser']"
+          @click="handleImportExcel"
+          type="primary"
+          >{{ $t("msg.excel.importExcel") }}</el-button
+        >
         <el-button @click="handleExportExcel" type="success">{{
-          $t('msg.excel.exportExcel')
+          $t("msg.excel.exportExcel")
         }}</el-button>
       </div>
     </el-card>
@@ -49,7 +52,7 @@
             </div>
 
             <div v-else>
-              <el-tag size="mini">{{ $t('msg.excel.defaultRole') }}</el-tag>
+              <el-tag size="mini">{{ $t("msg.excel.defaultRole") }}</el-tag>
             </div>
           </template>
         </el-table-column>
@@ -73,15 +76,24 @@
               @click="handleShowUserInfo(row._id)"
               size="mini"
             >
-              {{ $t('msg.excel.show') }}
+              {{ $t("msg.excel.show") }}
             </el-button>
 
-            <el-button type="info" size="mini">
-              {{ $t('msg.excel.role') }}
+            <el-button
+              type="info"
+              v-permission="['distributeRole']"
+              size="mini"
+            >
+              {{ $t("msg.excel.showRole") }}
             </el-button>
 
-            <el-button type="danger" @click="handleDeleteUser(row)" size="mini">
-              {{ $t('msg.excel.remove') }}
+            <el-button
+              v-permission="['removeUser']"
+              type="danger"
+              @click="handleDeleteUser(row)"
+              size="mini"
+            >
+              {{ $t("msg.excel.remove") }}
             </el-button>
           </template>
         </el-table-column>

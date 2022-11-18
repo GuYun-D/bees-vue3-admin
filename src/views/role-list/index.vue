@@ -23,6 +23,7 @@
           width="200"
         >
           <el-button
+          v-permission="['distributePermission']"
             @click="handleOpenPermissionDialog(row)"
             type="primary"
             size="mini"
