@@ -7,3 +7,12 @@ export const getAllArticleListApi = data => {
     params: data
   })
 }
+
+// 列表排序
+export const setTableSortApi = (data) => {
+  return request({
+    url: '/article/sort',
+    method: 'POST',
+    data
+  })
+}

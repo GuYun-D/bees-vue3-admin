@@ -98,7 +98,7 @@ const size = ref(10)
 const total = ref(0)
 
 onMounted(() => {
-  initSortable()
+  initSortable(tableData, getData)
 })
 
 const getData = async () => {
