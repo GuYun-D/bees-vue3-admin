@@ -1,7 +1,7 @@
 import request from '../utils/request'
 
 // 获取文章列表
-export const getAllArticleListApi = data => {
+export const getAllArticleListApi = (data) => {
   return request({
     url: '/article/list',
     params: data
@@ -18,15 +18,24 @@ export const setTableSortApi = (data) => {
 }
 
 // 删除文章
-export const deleteArticleApi = articleId => {
+export const deleteArticleApi = (articleId) => {
   return request({
     url: `/article/delete/${articleId}`
   })
 }
 
 // 获取文章详情
-export const getArticleDetailApi = articleId => {
+export const getArticleDetailApi = (articleId) => {
   return request({
     url: `article/${articleId}`
+  })
+}
+
+// 提交文章
+export const createArticleApi = (data) => {
+  return request({
+    url: '/article/create',
+    method: 'POST',
+    data
   })
 }
