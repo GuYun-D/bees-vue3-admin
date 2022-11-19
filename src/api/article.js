@@ -16,3 +16,17 @@ export const setTableSortApi = (data) => {
     data
   })
 }
+
+// 删除文章
+export const deleteArticleApi = articleId => {
+  return request({
+    url: `/article/delete/${articleId}`
+  })
+}
+
+// 获取文章详情
+export const getArticleDetailApi = articleId => {
+  return request({
+    url: `article/${articleId}`
+  })
+}

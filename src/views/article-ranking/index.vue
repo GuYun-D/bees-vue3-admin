@@ -85,8 +85,11 @@
 </template>
 
 <script setup>
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { onActivated, ref, onMounted } from 'vue'
-import { getAllArticleListApi } from '../../api/article'
+import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
+import { getAllArticleListApi, deleteArticleApi } from '../../api/article'
 import { watchSwitchLanguage } from '../../utils/i18n'
 import { dynamicData, selectedDynamicLabel, tableColumns } from './dynamic'
 import { tableRef, initSortable } from './sortable'
@@ -115,9 +118,26 @@ getData()
 watchSwitchLanguage(getData)
 onActivated(getData)
 
-const handleShow = (row) => {}
+const router = useRouter()
+const handleShow = async (row) => {
+  router.push(`/article/${row._id}`)
+}
 
-const handleDeleta = (row) => {}
+const i18n = useI18n()
+const handleDeleta = (row) => {
+  ElMessageBox.confirm(
+    i18n.t('msg.article.dialogTitle1') +
+      row.title +
+      i18n.t('msg.article.dialogTitle2'),
+    {
+      type: 'warning'
+    }
+  ).then(async () => {
+    await deleteArticleApi(row._id)
+    ElMessage.success(i18n.t('msg.articel.removeArticle'))
+    getData()
+  })
+}
 
 const handleSizeChange = (currentSize) => {
   size.value = currentSize
