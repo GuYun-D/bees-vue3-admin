@@ -24,7 +24,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { getArticleDetailApi } from '../../api/article'
 
 const route = useRoute()
@@ -38,7 +38,10 @@ const getData = async () => {
 
 getData()
 
-const handleEditArticle = () => {}
+const router = useRouter()
+const handleEditArticle = () => {
+  router.push(`/article/editor/${articelId}`)
+}
 </script>
 
 <style lang="scss" scoped>

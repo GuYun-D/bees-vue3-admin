@@ -39,3 +39,12 @@ export const createArticleApi = (data) => {
     data
   })
 }
+
+// 编辑文章
+export const editArticleApi = (data) => {
+  return request({
+    url: '/article/edit',
+    method: 'POST',
+    data
+  })
+}
